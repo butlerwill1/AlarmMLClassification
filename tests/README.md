@@ -4,6 +4,45 @@ This directory contains scripts and files used for testing, debugging, and analy
 
 ## Testing Scripts
 
+### `label_training_data.py` ⭐ **RECOMMENDED**
+**Interactive tool for manually labeling/relabeling training or validation data.**
+
+**Usage:**
+```bash
+cd tests
+source ../venv/bin/activate
+python3 label_training_data.py
+```
+
+**Configuration (edit the file to customize):**
+- `DATASET_SPLIT = 'train'` - Change to `'val'` to label validation data
+- `START_FROM_FILE = None` - Set to a filename to start from a specific file
+  - Example: `START_FROM_FILE = "20260111_204751_window_0050.wav"`
+
+**What it does:**
+- Shows waveform and spectrogram for each audio file
+- Plays the audio automatically
+- You press 'y' for alarm, 'n' for no alarm, 'r' to replay, 's' to skip
+- Updates `dataset_metadata.csv` automatically
+- Saves progress every 10 files (can resume later)
+- Shows statistics and progress
+
+**Controls:**
+- `y` or `1` = ALARM present
+- `n` or `0` = NO alarm (silence/noise)
+- `r`       = REPLAY audio (if you want to hear it again)
+- `s`       = SKIP this file
+- `q`       = QUIT and save progress
+
+**Features:**
+- Works on both train and val datasets
+- Can start from a specific file (useful for resuming or targeting specific files)
+- Resumes from where you left off if interrupted
+- Backs up metadata before starting
+- Visual feedback with waveform and spectrogram
+- Audio playback with replay option
+- Progress tracking (separate for train and val)
+
 ### `verify_what_microphone_hears.py`
 Records audio from the microphone and plays it back to verify that the microphone is capturing sound correctly.
 
@@ -118,9 +157,35 @@ From the frequency analysis:
 
 ## Recommended Workflow
 
+### Option 1: Manual Labeling (BEST - Most Accurate) ⭐
+
+1. **Label the training data manually:**
+   ```bash
+   cd tests
+   source ../venv/bin/activate
+   python3 label_training_data.py
+   ```
+   - Listen to each file and label it correctly
+   - Can do in batches (progress is saved)
+   - Takes time but ensures 100% accuracy
+
+2. **Retrain the model:**
+   - Open `train_cnn_window_split.ipynb`
+   - Set `LOAD_MODEL_PATH = None`
+   - Run all cells
+
+3. **Test with live audio:**
+   ```bash
+   cd tests
+   python3 test_alarm_audio.py
+   ```
+
+### Option 2: Automated Analysis (FASTER - Less Accurate)
+
 1. **Analyze the training data:**
    ```bash
    cd tests
+   source ../venv/bin/activate
    python3 analyze_all_training_files.py
    ```
 
@@ -132,6 +197,7 @@ From the frequency analysis:
    ```bash
    python3 fix_mislabeled_files.py
    ```
+   - Uses 2000 Hz threshold (may have false positives/negatives)
 
 4. **Retrain the model:**
    - Open `train_cnn_window_split.ipynb`
