@@ -174,14 +174,14 @@ if sum(p > 0.9 for p in predictions) >= 3:
 **Validation Metrics** (on held-out test set):
 - **Accuracy**: 98.32%
 - **Precision**: 99.66% (very few false positives)
-- **Recall**: 96.43% ⭐ 
+- **Recall**: 96.43% **(critical for medical application - catches 96.4% of alarms)**
 - **F1 Score**: 98.02%
 
 **Real-World Performance**:
-- ✅ Successfully detects alarms in live testing
-- ✅ Robust to background noise (TV, conversation, ambient sounds)
-- ✅ Works across different volumes and distances from monitor
-- ✅ Low false positive rate (<1 per hour in typical home environment)
+- Successfully detects alarms in live testing
+- Robust to background noise (TV, conversation, ambient sounds)
+- Works across different volumes and distances from monitor
+- Low false positive rate (<1 per hour in typical home environment)
 
 ## Project Structure
 
