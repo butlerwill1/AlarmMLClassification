@@ -1,10 +1,10 @@
-# Glucose Monitor Alarm Detection System
+# Real-Time CGM Alarm ML Pipeline with PyTorch CNNs and Mel Spectrograms
 
 ## Overview
 
-My father has Type 1 diabetes and uses a continuous glucose monitor (CGM) that alerts him when his blood sugar is dangerously low or high. However, due to hearing loss and the alarm's limited volume, he often sleeps through these critical alerts—a potentially life-threatening situation.
+My father has Type 1 diabetes and uses a continuous glucose monitor (CGM) that alerts him when his blood sugar is dangerously low or high. However, due to hearing loss and the alarm's limited volume, he often sleeps through these critical alerts, which creates a potentially life-threatening gap in the reliability of the device.
 
-This project builds a secondary alert system using machine learning to detect the CGM alarm sound and trigger a louder, more effective notification.
+This project builds a secondary alert system using Python, Librosa, mel spectrogram feature extraction, and a PyTorch CNN to detect the CGM alarm sound and trigger a louder, more effective notification. The system is designed for real-time audio classification, continuous microphone monitoring, and lightweight deployment on affordable edge hardware such as a Raspberry Pi.
 
 ## Problem Statement
 
