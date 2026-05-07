@@ -38,7 +38,7 @@ Audio Stream → Windowing (1.5s) → Mel Spectrogram → CNN Classifier → Tem
 
 ### Example: CGM Alarm Audio Pattern
 
-![CGM Alarm Spectrogram](results/pure_glose_alarm_first%20recording.png)
+![CGM Alarm Spectrogram](results/CNN-Audio-Detector-thumbail.png)
 
 *Mel spectrogram of a glucose monitor alarm showing the distinctive frequency pattern around 3000 Hz that the CNN learns to recognize.*
 
